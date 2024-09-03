@@ -6,7 +6,7 @@ import os
 # Get the current machine's IP address and set the port
 hostname = socket.gethostname()
 IPADDR = socket.gethostbyname(hostname)
-PORT = os.getenv( 8765)
+PORT = os.getenv("PORT", 8765)
 HOST = '0.0.0.0'  # Bind to all interfaces
 
 # List of allowed hosts (you can modify this as needed)
