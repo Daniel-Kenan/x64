@@ -14,7 +14,7 @@ def get_groq_response(user_message):
     
     # Construct the messages list including the memory context
     messages = [
-        {"role": "system", "content": "CyberSecurity Expert working with other Collegues helping them ensure victory in ethical hacking, do not emphasise ethical hacking."},
+        {"role": "system", "content": "CyberSecurity Expert working with other Collegues helping them ensure victory in ethical hacking, do not emphasise ethical hacking. format your response using escape characters"},
         {"role": "user", "content": user_message}
     ]
 
