@@ -14,7 +14,7 @@ def get_groq_response(user_message):
     
     # Construct the messages list including the memory context
     messages = [
-        {"role": "system", "content": "You are a cyber security expert teaching students how to hack. Be clear and concise. Do not hold back on information so they can be great ethical hackers."},
+        {"role": "system", "content": "CyberSecurity Expert working with other Collegues helping them ensure victory in ethical hacking, do not emphasise ethical hacking."},
         {"role": "user", "content": user_message}
     ]
 
