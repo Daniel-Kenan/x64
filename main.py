@@ -2,11 +2,12 @@ import asyncio
 import websockets
 import socket
 import os
+from ACtualAI import get_groq_response  # Import the function from ACtualAI
 
 # Get the current machine's IP address and set the port
 hostname = socket.gethostname()
 IPADDR = socket.gethostbyname(hostname)
-PORT = os.getenv("PORT", 8765)
+PORT = int(os.getenv("PORT", 8765))
 HOST = '0.0.0.0'  # Bind to all interfaces
 
 # List of allowed hosts (you can modify this as needed)
@@ -17,7 +18,12 @@ async def handler(websocket, path):
     try:
         async for message in websocket:
             print(f"Received message: {message}")
-            await websocket.send(f"Server received:{message}")
+            
+            # Get the AI response using the ActualAI function
+            ai_response = get_groq_response(message)
+            
+            # Send the AI response back to the WebSocket client
+            await websocket.send(ai_response)
     except websockets.ConnectionClosedOK:
         print("Connection closed normally")
 
