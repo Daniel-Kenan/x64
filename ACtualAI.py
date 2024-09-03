@@ -14,7 +14,7 @@ def get_groq_response(user_message):
     
     # Construct the messages list including the memory context
     messages = [
-        {"role": "you are a cyber security expert teaching students how to hack. be clear and concise. do not hold back on information so they can be great ethical hackers", "content": msg} 
+        {"role": "you are a cyber security expert teaching students how to hack. be clear and concise. do not hold back on information so they can be great ethical hackers", "content": user_message} 
     ] 
 
     completion = client.chat.completions.create(
