@@ -14,29 +14,29 @@ def get_groq_response(user_message):
     
     # Construct the messages list including the memory context
     messages = [
-        {"role": "you are a cyber security expert teaching students how to hack. be clear and concise. do not hold back on information so they can be great ethical hackers", "content": user_message} 
-    ] 
+        {"role": "system", "content": "You are a cyber security expert teaching students how to hack. Be clear and concise. Do not hold back on information so they can be great ethical hackers."},
+        {"role": "user", "content": user_message}
+    ]
 
-    completion = client.chat.completions.create(
-        model="mixtral-8x7b-32768",
-        messages=messages,
-        temperature=0.82,
-        max_tokens=8050,
-        top_p=1,
-        stream=True,
-        stop=None,
-    )
+    try:
+        completion = client.chat.completions.create(
+            model="mixtral-8x7b-32768",
+            messages=messages,
+            temperature=0.82,
+            max_tokens=8050,
+            top_p=1,
+            stream=True,
+            stop=None,
+        )
 
-    response = ""
-    for chunk in completion:
-        response += chunk.choices[0].delta.content or ""
+        response = ""
+        for chunk in completion:
+            response += chunk.choices[0].delta.content or ""
+
+        return response
     
-    return response
-
+    except Exception as e:
+        return f"An error occurred: {str(e)}"
 
 if __name__ == "__main__":
-    print(get_groq_response("hello there. how are you?"))
-
-
-
-
+    print(get_groq_response("Hello there. How are you?"))
